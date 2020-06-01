@@ -38,8 +38,8 @@ The binary classifier and the multilabel classifier both used DenseNet121 as the
 
 For the Semantic Segmentation network I used an UNet with efficientnetb2 as the backbone. UNet is famous for being very succesfull in semantic segmentation tasks, EfficientNetb2 was the best model I could train due to time constraints. 
 <br>
-
-The inference pipeline followed the following steps:
+An ensemble model can be designed that uses all these models.
+The inference pipeline can follow the following steps:
 1. Predict whether part has defect or not. If yes proceed to 2nd step else return no defect and end.
 2. Predict what all defects were present in the image. Store the predicted values.
 3. Iterate through the predicted defect labels of the image and use the semantic segmentation model to predict the mask region corresponding to the defect. 
