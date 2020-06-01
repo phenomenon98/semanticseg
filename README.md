@@ -67,9 +67,10 @@ Runtime metrics were graphed and observed in realtime using WandB.
 <br>
 
 ## Running the notebook
-Running on Colab did not always work for me. Usually after the notebook crashed Colab would offer better resources(more RAM), after which the notebook would run. Most of the code was written and run using Paperspace's free Nvidia Quadro P5000 machine.
+Running on Colab did not always work for me. Sometimes Colab would crash but then offer better resources(more RAM), after which the notebook would run. Most of the code was written and run using Paperspace's free Nvidia Quadro P5000 machine.
+Drive links to models:
 <br>
 <br>
 
 ## Conclusion
-This 3 model pipeline is a very good framework that can be generalized for a wide range of semantic segmentation tasks. In the use case of identifying regions of metallic parts that are defected, the models trained on this dataset can be used as the base model to perform transsfer learning with very good generalization.
+The ensemble model pipeline is a good framework that can be generalized for a wide range of semantic segmentation tasks. In the use case of identifying regions of metallic parts that are defected, the models trained on this dataset can be used as the base model to perform transsfer learning with very good generalization.
