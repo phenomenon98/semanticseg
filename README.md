@@ -68,6 +68,7 @@ Runtime metrics were graphed and observed in realtime using WandB.
 
 ## Running the notebook
 Running on Colab did not always work for me. Sometimes Colab would crash but then offer better resources(more RAM), after which the notebook would run. Most of the code was written and run using Paperspace's free Nvidia Quadro P5000 machine.
+[Colab link](https://colab.research.google.com/drive/1FY852a5BY-_xXEmSR3-TZy-9avaO8_KW?usp=sharing)
 Drive links to models:
 <br>
 <br>
