@@ -1,4 +1,4 @@
-# SwitchOn Assignment 
+# Semantic Segmentation of defects in Steel Manufacturing
 <br>
 <br>
 
@@ -7,11 +7,6 @@ Come up with a Deep Learning based solution that can differentiate between good 
 <br>
 <br>
 
-## My Solution
-### Multiclass Classifier + Grad-CAM
-I had experience using Deep Learning to build multilabel image classifiers. However, the only visualization method for CNNs that I had heard of was Grad-CAM. Therefore I implemented an image classifier by performing transfer learning with resnext101 pretrained on ImageNet. However, Grad-CAM is useful only to understand what region the network based it's decision off, which did not fit with the problem statement.
-<br>
-<br>
 
 ### Semantic Segmentation
 While searching for datasets of metal parts, I stumbled upon [Severstal's Steel Defect Detection Dataset](https://www.kaggle.com/c/severstal-steel-defect-detection). Through this I discovered Semantic Segmentation. I found a library called [segmentation_models](https://github.com/qubvel/segmentation_models) which provides abstracted models of famous CNN architectures often used in Semantic Segmentation tasks. 
@@ -27,10 +22,11 @@ The dataset contains 12,568 training images and 5,506 test images. The defects a
 <br>
 
 ### Model Selection and Pipeline
-The models were trained on a NVIDIA Quadro P5000 which allowed me to use much bigger models than what I could use in Colab's default GPU. However, I had limited access to the GPU and could only train each model for a few epochs.
+I primarily used a library called [segmentation_models](https://github.com/qubvel/segmentation_models) which provides abstracted models of famous CNN architectures often used in Semantic Segmentation tasks. 
 <br>
-
 I trained a binary classifier, a multilabel classifier and a semantic segmentation network individually on each of the 4 types of defects. 
+<br>
+The models were trained on a NVIDIA Quadro P5000 which allowed me to use much bigger models than what I could use in Colab's default GPU. However, I had limited access to the GPU and could only train each model for a few epochs.
 <br>
 
 The binary classifier and the multilabel classifier both used DenseNet121 as the base model. I chose DenseNet121 as it had an above average top1 score on the imagenet dataset while being extremely lightweight. DenseNet121 outperforms several models with similar sizes. Also, larger versions of DenseNet took much longer to train without much increase in f1 score.
@@ -38,7 +34,6 @@ The binary classifier and the multilabel classifier both used DenseNet121 as the
 
 For the Semantic Segmentation network I used an UNet with efficientnetb2 as the backbone. UNet is famous for being very succesfull in semantic segmentation tasks, EfficientNetb2 was the best model I could train due to time constraints. 
 <br>
-An ensemble model can be designed that uses all these models.
 The inference pipeline can follow the following steps:
 1. Predict whether part has defect or not. If yes proceed to 2nd step else return no defect and end.
 2. Predict what all defects were present in the image. Store the predicted values.
@@ -67,11 +62,11 @@ Runtime metrics were graphed and observed in realtime using WandB.
 <br>
 
 ## Running the notebook
-Running on Colab did not always work for me. Sometimes Colab would crash but then offer better resources(more RAM), after which the notebook would run. Most of the code was written and run using Paperspace's free Nvidia Quadro P5000 machine.
+Running on Colab did not always work for me. Sometimes Colab would crash but then offer better resources(more RAM), after which the notebook would run.
 [Colab link](https://colab.research.google.com/drive/1FY852a5BY-_xXEmSR3-TZy-9avaO8_KW?usp=sharing)<br>
-Drive links to models:
+
 <br>
 <br>
 
 ## Conclusion
-The ensemble model pipeline is a good framework that can be generalized for a wide range of semantic segmentation tasks. In the use case of identifying regions of metallic parts that are defected, the models trained on this dataset can be used as the base model to perform transsfer learning with very good generalization.
+A model pipeline is a good framework that can be generalized for a wide range of semantic segmentation tasks. In the use case of identifying regions of metallic parts that are defected, the models trained on this dataset can be used as the base model to perform transsfer learning with very good generalization.
